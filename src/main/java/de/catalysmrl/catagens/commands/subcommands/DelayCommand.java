@@ -32,12 +32,12 @@ public class DelayCommand implements CataCommand {
             return;
         }
 
-        if (!GensManager.containsGenerator(args[1])) {
+        if (!GensManager.getInstance().containsGenerator(args[1])) {
             sender.sendMessage(CataGens.PREFIX + "§cGenerator is not registered!");
             return;
         }
 
-        Generator generator = GensManager.getGenerator(args[1]);
+        Generator generator = GensManager.getInstance().getGenerator(args[1]);
         generator.setDelay(Long.parseLong(args[2]));
         generator.start();
 

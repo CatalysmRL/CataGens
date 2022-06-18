@@ -10,18 +10,25 @@ import java.util.List;
 
 public class GensManager {
 
-    private static List<Generator> generators;
+    private static GensManager gensManager;
 
-    public GensManager() {
-        generators = loadGensFromFiles();
-        Bukkit.getScheduler().runTaskTimer(CataGens.getInstance(), GensManager::saveAllGens, 120, 600 * 20);
+    public static GensManager getInstance() {
+        return gensManager;
     }
 
-    public static List<Generator> getGenerators() {
+    private List<Generator> generators;
+
+    public GensManager() {
+        gensManager = this;
+        generators = loadGensFromFiles();
+        Bukkit.getScheduler().runTaskTimer(CataGens.getInstance(), gensManager::saveAllGens, 120, 600 * 20);
+    }
+
+    public List<Generator> getGenerators() {
         return generators;
     }
 
-    public static Generator getGenerator(String name) {
+    public Generator getGenerator(String name) {
         for (Generator generator : generators) {
             if (generator.getName().equals(name)) {
                 return generator;
@@ -35,7 +42,7 @@ public class GensManager {
      * @param generator The generator you want to register
      * @return true if generator was not yet present
      */
-    public static boolean registerGenerator(Generator generator) {
+    public boolean registerGenerator(Generator generator) {
         if (!containsGenerator(generator.getName())) {
             generators.add(generator);
             return true;
@@ -43,7 +50,7 @@ public class GensManager {
         return false;
     }
 
-    public static boolean containsGenerator(String name) {
+    public boolean containsGenerator(String name) {
         for (Generator gen : generators) {
             if (gen.getName().equals(name)) return true;
         }
@@ -72,7 +79,7 @@ public class GensManager {
         return gens;
     }
 
-    public static List<String> getGensListNames() {
+    public List<String> getGensListNames() {
         List<String> gensListNames = new ArrayList<>();
         for (Generator gen : generators) {
             gensListNames.add(gen.getName());
@@ -80,7 +87,7 @@ public class GensManager {
         return gensListNames;
     }
 
-    public static void saveAllGens() {
+    public void saveAllGens() {
         generators.forEach(Generator::save);
     }
 }

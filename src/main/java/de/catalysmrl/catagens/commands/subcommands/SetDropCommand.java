@@ -38,14 +38,14 @@ public class SetDropCommand implements CataCommand {
             return;
         }
 
-        if (!GensManager.containsGenerator(args[1])) {
+        if (!GensManager.getInstance().containsGenerator(args[1])) {
             sender.sendMessage(CataGens.PREFIX + "§cGen is not registered!");
             return;
         }
 
         Player player = (Player) sender;
 
-        Generator generator = GensManager.getGenerator(args[1]);
+        Generator generator = GensManager.getInstance().getGenerator(args[1]);
         generator.setDropItem(player.getInventory().getItemInMainHand().clone());
         sender.sendMessage(CataGens.PREFIX + "§aSet drop item for §6" + args[1]);
         generator.save();

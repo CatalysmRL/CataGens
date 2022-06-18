@@ -11,7 +11,7 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event) {
-        for (Generator gen : GensManager.getGenerators()) {
+        for (Generator gen : GensManager.getInstance().getGenerators()) {
             if (gen.getGenItem() != null && gen.getGenItem().getType().equals(event.getBlock().getType())) {
                 gen.getLocationList().remove(event.getBlock().getLocation());
             }
@@ -20,7 +20,7 @@ public class BlockListeners implements Listener {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        for (Generator gen : GensManager.getGenerators()) {
+        for (Generator gen : GensManager.getInstance().getGenerators()) {
             if (gen.getGenItem() != null && gen.getGenItem().isSimilar(event.getItemInHand())) {
                 event.getPlayer().sendMessage("test");
                 gen.addLocation(event.getBlock().getLocation());

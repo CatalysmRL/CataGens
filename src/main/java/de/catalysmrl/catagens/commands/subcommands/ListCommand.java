@@ -26,7 +26,7 @@ public class ListCommand implements CataCommand {
 
     @Override
     public void onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
-        sender.sendMessage(CataGens.PREFIX + "Registered generators:", GensManager.getGensListNames().toString());
+        sender.sendMessage(CataGens.PREFIX + "Registered generators:", GensManager.getInstance().getGensListNames().toString());
     }
 
     @Override

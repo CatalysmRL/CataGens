@@ -33,13 +33,13 @@ public class DeleteCommand implements CataCommand {
             return;
         }
 
-        if (!GensManager.containsGenerator(args[1])) {
+        if (!GensManager.getInstance().containsGenerator(args[1])) {
             sender.sendMessage(CataGens.PREFIX + "§cGen is not registered!");
             return;
         }
 
-        Generator generator = GensManager.getGenerator(args[1]);
-        GensManager.getGenerators().remove(generator);
+        Generator generator = GensManager.getInstance().getGenerator(args[1]);
+        GensManager.getInstance().getGenerators().remove(generator);
         generator.getFile().delete();
 
         sender.sendMessage(CataGens.PREFIX + "§aSuccessfully deleted §6" + args[1]);

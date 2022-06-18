@@ -40,7 +40,7 @@ public final class CataGens extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        GensManager.saveAllGens();
+        gensManager.saveAllGens();
         instance = null;
         gensManager = null;
     }
