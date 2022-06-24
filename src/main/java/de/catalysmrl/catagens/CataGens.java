@@ -19,7 +19,7 @@ public final class CataGens extends JavaPlugin {
 
     private GensManager gensManager;
 
-    public static String PREFIX = "§6[§bCata§aGens§6] §7";
+    public static String PREFIX = "§7[§32§bGens§7] §d";
 
     @Override
     public void onEnable() {
@@ -46,7 +46,7 @@ public final class CataGens extends JavaPlugin {
     }
 
     private void registerCommands() {
-        getCommand("catagens").setExecutor(new CommandsManager());
+        getCommand("gen").setExecutor(new CommandsManager());
     }
 
     private void registerListeners() {

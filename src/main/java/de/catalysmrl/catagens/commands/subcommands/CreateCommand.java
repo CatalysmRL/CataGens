@@ -18,12 +18,12 @@ public class CreateCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "catagens.command.create";
+        return "2gens.command.create";
     }
 
     @Override
     public String getUsage() {
-        return "/cg create <gen>";
+        return "/gen create <gen>";
     }
 
     @Override
@@ -34,7 +34,7 @@ public class CreateCommand implements CataCommand {
         }
 
         Generator generator = new Generator(args[1]);
-        boolean success = GensManager.registerGenerator(generator);
+        boolean success = GensManager.getInstance().registerGenerator(generator);
 
         if (!success) {
             sender.sendMessage(CataGens.PREFIX + "§6" + args[1] + " §cis already registered");
@@ -48,6 +48,6 @@ public class CreateCommand implements CataCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        return null;
+        return Collections.emptyList();
     }
 }

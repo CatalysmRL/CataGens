@@ -6,53 +6,51 @@ import de.catalysmrl.catagens.gens.Generator;
 import de.catalysmrl.catagens.gens.GensManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SetGenCommand implements CataCommand {
+public class RenameCommand implements CataCommand {
     @Override
     public String getName() {
-        return "setgen";
+        return "rename";
     }
 
     @Override
     public String getPermission() {
-        return "2gens.command.setgen";
+        return "2gens.command.rename";
     }
 
     @Override
     public String getUsage() {
-        return "/gen setgen <gen>";
-    }
-
-    @Override
-    public boolean onlyPlayers() {
-        return true;
+        return "/gen rename <gen> <name>";
     }
 
     @Override
     public void onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
-        if (args.length != 2) {
+        if (args.length != 4) {
             sender.sendMessage(CataGens.PREFIX + getUsage());
             return;
         }
 
         if (!GensManager.getInstance().containsGenerator(args[1])) {
-            sender.sendMessage(CataGens.PREFIX + "§cGen is not registered!");
+            sender.sendMessage(CataGens.PREFIX + "§cGenerator is not registered!");
             return;
         }
 
-        Player player = (Player) sender;
+        if (GensManager.getInstance().containsGenerator(args[2])) {
+            sender.sendMessage(CataGens.PREFIX + "§cGenerator is already registered!");
+            return;
+        }
 
-        Generator generator = GensManager.getInstance().getGenerator(args[1]);
-        generator.setGenItem(player.getInventory().getItemInMainHand().clone());
-        sender.sendMessage(CataGens.PREFIX + "§aSet gen item for §6" + args[1]);
-        generator.save();
+        Generator gen = GensManager.getInstance().getGenerator(args[1]);
+        gen.setName(args[2]);
+        gen.getFile().renameTo(new File(CataGens.getInstance().getDataFolder() + "/generators/" + args[2]));
+        sender.sendMessage(CataGens.PREFIX + "Renamed generator to §6" + args[2]);
+        gen.save();
     }
 
     @Override

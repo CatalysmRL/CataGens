@@ -6,8 +6,11 @@ import de.catalysmrl.catagens.gens.Generator;
 import de.catalysmrl.catagens.gens.GensManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.util.StringUtil;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DeleteCommand implements CataCommand {
@@ -18,12 +21,12 @@ public class DeleteCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "catagens.command.delete";
+        return "2gens.command.delete";
     }
 
     @Override
     public String getUsage() {
-        return "/cg delete <gen>";
+        return "/gen delete <gen>";
     }
 
     @Override
@@ -47,6 +50,10 @@ public class DeleteCommand implements CataCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        return null;
+        if (args.length == 2) {
+            return StringUtil.copyPartialMatches(args[1], GensManager.getInstance().getGensListNames(), new ArrayList<>(GensManager.getInstance().getGensListNames().size()));
+        }
+
+        return Collections.emptyList();
     }
 }

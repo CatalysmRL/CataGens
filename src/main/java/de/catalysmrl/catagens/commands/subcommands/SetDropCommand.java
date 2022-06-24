@@ -7,7 +7,11 @@ import de.catalysmrl.catagens.gens.GensManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.util.StringUtil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class SetDropCommand implements CataCommand {
@@ -17,13 +21,18 @@ public class SetDropCommand implements CataCommand {
     }
 
     @Override
+    public List<String> getAliases() {
+        return List.of("drop");
+    }
+
+    @Override
     public String getPermission() {
-        return "catagens.command.setdrop";
+        return "2gens.command.setdrop";
     }
 
     @Override
     public String getUsage() {
-        return "/cg setdrop <gen>";
+        return "/gen setdrop <gen>";
     }
 
     @Override
@@ -54,6 +63,10 @@ public class SetDropCommand implements CataCommand {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        return null;
+        if (args.length == 2) {
+            return StringUtil.copyPartialMatches(args[1], GensManager.getInstance().getGensListNames(), new ArrayList<>(GensManager.getInstance().getGensListNames().size()));
+        }
+
+        return Collections.emptyList();
     }
 }

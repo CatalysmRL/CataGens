@@ -7,27 +7,31 @@ import de.catalysmrl.catagens.gens.GensManager;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class SetGenCommand implements CataCommand {
+public class GetCommand implements CataCommand {
     @Override
     public String getName() {
-        return "setgen";
+        return "get";
+    }
+
+    @Override
+    public List<String> getAliases() {
+        return List.of("give");
     }
 
     @Override
     public String getPermission() {
-        return "2gens.command.setgen";
+        return "2gens.command.get";
     }
 
     @Override
     public String getUsage() {
-        return "/gen setgen <gen>";
+        return "/gen get <gen>";
     }
 
     @Override
@@ -43,16 +47,19 @@ public class SetGenCommand implements CataCommand {
         }
 
         if (!GensManager.getInstance().containsGenerator(args[1])) {
-            sender.sendMessage(CataGens.PREFIX + "§cGen is not registered!");
+            sender.sendMessage(CataGens.PREFIX + "§cGenerator is not registered!");
+            return;
+        }
+
+        Generator gen = GensManager.getInstance().getGenerator(args[1]);
+        if (gen.getGenItem() == null) {
+            sender.sendMessage(CataGens.PREFIX + "§cThis generator has no gen item set");
             return;
         }
 
         Player player = (Player) sender;
-
-        Generator generator = GensManager.getInstance().getGenerator(args[1]);
-        generator.setGenItem(player.getInventory().getItemInMainHand().clone());
-        sender.sendMessage(CataGens.PREFIX + "§aSet gen item for §6" + args[1]);
-        generator.save();
+        player.getInventory().addItem(gen.getGenItem().clone());
+        player.sendMessage(CataGens.PREFIX + "§aGenerator has been added to your inventory");
     }
 
     @Override
