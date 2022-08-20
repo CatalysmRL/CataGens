@@ -27,7 +27,7 @@ public class SetDropCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "2gens.command.setdrop";
+        return "catagens.command.setdrop";
     }
 
     @Override

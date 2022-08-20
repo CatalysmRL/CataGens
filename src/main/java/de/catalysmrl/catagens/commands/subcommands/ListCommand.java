@@ -18,7 +18,7 @@ public class ListCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "2gens.command.list";
+        return "catagens.command.list";
     }
 
     @Override

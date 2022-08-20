@@ -22,7 +22,7 @@ public class SetGenCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "2gens.command.setgen";
+        return "catagens.command.setgen";
     }
 
     @Override

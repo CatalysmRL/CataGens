@@ -1,12 +1,12 @@
-name: 2Gens
+name: CataGens
 version: '${project.version}'
 main: de.catalysmrl.catagens.CataGens
-api-version: 1.18
+api-version: 1.17
 authors: [ CatalysmRL ]
 description: Plugin to create automatic generators
 
 commands:
-  gen:
+  gens:
     description: Main command to manage generators
     usage: /<command>
-    aliases: [catagens, cg, gens]
+    aliases: [catagens, cg, gen]

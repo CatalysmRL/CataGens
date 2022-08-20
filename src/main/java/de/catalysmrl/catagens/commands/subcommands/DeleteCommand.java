@@ -21,7 +21,7 @@ public class DeleteCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "2gens.command.delete";
+        return "catagens.command.delete";
     }
 
     @Override

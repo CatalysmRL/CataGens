@@ -20,7 +20,7 @@ public class DelayCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "2gens.command.timing";
+        return "catagens.command.timing";
     }
 
     @Override

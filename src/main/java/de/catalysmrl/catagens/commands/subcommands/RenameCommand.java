@@ -21,7 +21,7 @@ public class RenameCommand implements CataCommand {
 
     @Override
     public String getPermission() {
-        return "2gens.command.rename";
+        return "catagens.command.rename";
     }
 
     @Override

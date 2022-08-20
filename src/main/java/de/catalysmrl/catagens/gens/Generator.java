@@ -10,7 +10,6 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitTask;
 
-import javax.annotation.Nonnull;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -80,7 +79,6 @@ public class Generator implements Runnable, ConfigurationSerializable {
     }
 
     @Override
-    @Nonnull
     public Map<String, Object> serialize() {
         Map<String, Object> serializedMap = new LinkedHashMap<>();
 
