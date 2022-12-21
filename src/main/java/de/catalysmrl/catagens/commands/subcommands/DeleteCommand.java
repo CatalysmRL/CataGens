@@ -42,8 +42,7 @@ public class DeleteCommand implements CataCommand {
         }
 
         Generator generator = GensManager.getInstance().getGenerator(args[1]);
-        GensManager.getInstance().getGenerators().remove(generator);
-        generator.getFile().delete();
+        GensManager.getInstance().deleteGenerator(generator);
 
         sender.sendMessage(CataGens.PREFIX + "§aSuccessfully deleted §6" + args[1]);
     }

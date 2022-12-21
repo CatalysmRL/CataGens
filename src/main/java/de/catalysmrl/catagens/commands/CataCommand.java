@@ -24,5 +24,5 @@ public interface CataCommand {
 
     void onCommand(CommandSender sender, Command command, String commandLabel, String[] args);
 
-    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args);
+    List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args);
 }

@@ -16,7 +16,7 @@ public class GensManager {
         return gensManager;
     }
 
-    private List<Generator> generators;
+    private final List<Generator> generators;
 
     public GensManager() {
         gensManager = this;
@@ -48,6 +48,12 @@ public class GensManager {
             return true;
         }
         return false;
+    }
+
+    public void deleteGenerator(Generator generator) {
+        generator.stop();
+        generator.getFile().delete();
+        generators.remove(generator);
     }
 
     public boolean containsGenerator(String name) {

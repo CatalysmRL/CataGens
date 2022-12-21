@@ -11,13 +11,13 @@ import org.bukkit.util.StringUtil;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CommandsManager implements TabExecutor {
 
     private final ArrayList<CataCommand> registeredCommands = new ArrayList<>();
 
     public CommandsManager() {
+        registeredCommands.add(new GuiCommand());
         registeredCommands.add(new CreateCommand());
         registeredCommands.add(new DeleteCommand());
         registeredCommands.add(new ListCommand());

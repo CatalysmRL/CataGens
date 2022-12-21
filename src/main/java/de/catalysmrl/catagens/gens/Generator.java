@@ -51,6 +51,11 @@ public class Generator implements Runnable, ConfigurationSerializable {
         task = Bukkit.getScheduler().runTaskTimer(CataGens.getInstance(), this, 0, delay);
     }
 
+    public void stop() {
+        if (task == null) return;
+        task.cancel();
+    }
+
     @Override
     public void run() {
         for (Location location : locationList) {
